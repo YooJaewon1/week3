@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3주차-함수</title>
+
+    <link href="./style.css" rel="stylesheet">
+
+    <style ="text/css">
+        body{margin:0; text-align: center;
+            }
+
+        #con21 {display: none;}
+        #con1.hidden{opacity:0; transition: opacity 0.5s ease;}
+        #con22{display: flex; flex-direction: column; align-items: center;}
+        .button{ margin: 5px;}
+        #shoe{padding-top: 5vh;}
+        p, h3{font-family: 'Pretendard-Regular'; word-spacing: -0.05rem; font-size:1.2rem; margin: 30px;}
+        #cafebg, #dogbg, #basebg{display: none; width: 100%;  position: fixed; left:0; top:0;/* 절대 위치 설정 */
+            z-index: -1; /* 모든 요소 뒤로 보내기 */;
+        margin:0;height:100vh}
+        #earimg{height: 50vh}
+
+    </style>
+
+</head>
+<body>
+    <div id ="con1">
+        <img src ="ear.png" id="earimg">
+        <p>나갈 준비 하기 귀찮을 땐 귀만 씻어서 준비하세요.</p>
+        <button class="w-btn-neon2" id="but1" type="button"> 귀만 외출하기 </button>
+    </div>
+    
+
+    <div id="con21">
+        <img src ="shoe.png" id="shoe">
+        <h3>어디로 가고 싶으신가요?</h3>
+        <div id="con22">
+            <button id="cafe" class="w-btn w-btn-indigo">카페</button>
+            <audio id="cafem" src="music1.mp3"></audio>
+            <audio id="cafem2" src="music6.mp3"></audio>
+            <img src="bg1.jpg" id="cafebg">
+            
+            <button id="base" class="w-btn w-btn-indigo">야구장</button >
+            <audio id="basem" src="music2.mp3"></audio>
+            <audio id="basem2" src="music4.mp3"></audio>
+            <audio id="basem3" src="music5.mp3"></audio>
+            <img src="bg2.jpg" id="basebg">
+            
+            <button id="dog" class="w-btn w-btn-indigo">공원</button>
+            <audio id="dogm" src="music3.mp3"></audio>
+            <img src="bg3.jpg" id="dogbg">
+            
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        document.getElementById('but1').addEventListener('click', function() {
+            const con1 = document.getElementById('con1');
+            const but1 = document.getElementById('but1');
+            const con21 = document.getElementById('con21');
+
+            con1.classList.add('hidden'); // 현재 콘텐츠 숨기기
+            but1.classList.add('hidden'); // 버튼 숨기기
+            
+            setTimeout(() => {
+                con1.style.display = 'none'; // 숨긴 후 display: none
+                but1.style.display = 'none'; // 숨긴 후 display: none
+                con21.style.display = 'block'; // 다음 콘텐츠 보이기
+            }, 500); // 애니메이션 시간과 일치
+        });
+
+
+    cafe.addEventListener('click', function() {
+        if(cafem.paused) {
+            cafem.play();
+            cafem2.play();
+            basem.pause();
+            basem2.pause();
+            basem3.pause();
+            dogm.pause();
+            cafe.textContent = '모두가 타자 연습하는 스터디 카페';
+            cafebg.style.display = 'block'
+        }
+        else {
+            cafem.pause();
+            cafem2.pause();
+            cafe.textContent = '카페';
+            cafebg.style.display = 'none'
+        }
+        
+    });
+
+    base.addEventListener('click', function() {
+        if(basem.paused) {
+            basem.play();
+            basem2.play();
+            basem3.play();
+            cafem.pause();
+            cafem2.pause();
+            dogm.pause();
+            base.textContent = '양옆에서 치킨 먹는 야구장 가기';
+            basebg.style.display = 'block'
+        }
+        else {
+            basem.pause();
+            basem2.pause();
+            basem3.pause();
+            base.textContent = '야구장';
+            basebg.style.display = 'none'
+        }
+        
+    });
+
+    dog.addEventListener('click', function() {
+        if(dogm.paused) {
+            basem.pause();
+            basem2.pause();
+            basem3.pause();
+            cafem.pause();
+            cafem2.pause();
+            dogm.play();
+            dog.textContent = '강아지 많은 공원 한 가운데 서있기';
+            dogbg.style.display = 'block'
+        }
+        else {
+            dogm.pause();
+            dog.textContent = '공원';
+            dogbg.style.display = 'none'
+
+        }
+        
+    });
+    </script>
+
+
+
+
+</body>
+</html>
